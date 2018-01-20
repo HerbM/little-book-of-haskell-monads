@@ -52,9 +52,7 @@
 - [**XB**. Monad, Applicatives and Functors](https://github.com/jameslawson/notes/blob/master/haskell/haskellxb.md)
 - [**XC**. Kleisli and Function Composition with `=<<`](https://github.com/jameslawson/notes/blob/master/haskell/haskellxc.md)
 
-
-
-<br><br><br><hr>
+<br><hr>
 
 *The materials herein are all © James Lawson 2018 <br>
 The contents of this book are are licensed under a 
