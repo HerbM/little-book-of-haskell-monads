@@ -1,4 +1,4 @@
-### The Little Book of Haskell Monads (Draft)
+# The Little Book of Haskell Monads
 
 #### 1. `do` Blocks
 
@@ -53,3 +53,8 @@
 - [**XC**. Kleisli and Function Composition with `=<<`](https://github.com/jameslawson/notes/blob/master/haskell/haskellxc.md)
 
 
+
+<br><br><br><hr>
+*James Lawson © 2018 <br>
+The contents of this book are are licensed under a 
+[Attribution-NonCommercial-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-nc-sa/4.0/)*
