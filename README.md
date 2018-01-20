@@ -1,5 +1,7 @@
 ## The Little Book of Haskell Monads
 
+> :warning: *Early draft Version!* – Read with caution
+
 #### 1. `do` Blocks
 
 - [**1A**. What *are* `do` Blocks?](https://github.com/jameslawson/notes/blob/master/haskell/haskell1a.md)
