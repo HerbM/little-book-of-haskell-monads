@@ -22,12 +22,12 @@
     
 #### 3. Implementing Monads and Encapsulation
 
-- [**3A**. Newtypes and Side-effects](https://github.com/jameslawson/notes/blob/master/haskell3a.md)
-- [**3B**. Internal State I](https://github.com/jameslawson/notes/blob/master/haskell3b.md)
-- [**3C**. Writing definitions for `=<<`](https://github.com/jameslawson/notes/blob/master/haskell3c.md)
-- [**3D**. Internal State III](https://github.com/jameslawson/notes/blob/master/haskell3d.md)
-- [**3E**. Appending I](https://github.com/jameslawson/notes/blob/master/haskell3e.md)
-- [**3F**. Handling Errors with Either and Maybe](https://github.com/jameslawson/notes/blob/master/haskell3f.md)
+- [**3A**. Newtypes and Side-effects](https://github.com/jameslawson/little-book-of-haskell-monads/blob/master/haskell3a.md)
+- [**3B**. Internal State I](https://github.com/jameslawson/little-book-of-haskell-monads/blob/master/haskell3b.md)
+- [**3C**. Writing definitions for `=<<`](https://github.com/jameslawson/little-book-of-haskell-monads/blob/master/haskell3c.md)
+- [**3D**. Internal State III](https://github.com/jameslawson/little-book-of-haskell-monads/blob/master/haskell3d.md)
+- [**3E**. Appending I](https://github.com/jameslawson/little-book-of-haskell-monads/blob/master/haskell3e.md)
+- [**3F**. Handling Errors with Either and Maybe](https://github.com/jameslawson/little-book-of-haskell-monads/blob/master/haskell3f.md)
 
 
 #### 4. Control Flow in `do` Blocks
