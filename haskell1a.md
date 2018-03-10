@@ -88,10 +88,9 @@ we need something simpler to express what we're doing – almost like a *domain-
 Instead of us having to make our own DSL, Haskell has given us some *syntactic sugar* baked into the 
 language that sits on top of binds and lambdas. This syntactic sugar is the do-notation.
 
-### Translating do blocks
-
-The keyword `do` and the lines make up a so-called do-*block*. The syntax of the simplest of do blocks looks like:
-```
+The keyword `do` and the lines make up a so-called do-*block*.
+The syntax of the simplest of do blocks looks like:
+```haskell
 do
   identifier1 <- rhs1
   identifier2 <- rhs2
@@ -106,12 +105,15 @@ where:
 - `rhs` is any expression
 - `expression` is any expression
 
-From the previous discussion, every do block can be written instead using binds and lambdas. 
-Understanding monads can be decomposed into three upward struggles:    
+### Translating do blocks
 
-1. translating the do blocks *(this chapter!)*
-2. understanding what bind is and why we need it    
-3. writing out own monads
+From the previous discussion, every do block can be written instead using binds and lambdas. 
+Understanding monads can be decomposed into three parallel upward struggles:    
+
+1. Translating do blocks into binds and lambdas *(This Chapter)*
+2. Understanding what bind is and why we need it *(Chapter 2)*
+3. Writing out own monads *(Chapter 3)*  
+
 
 To get a better feel for how monads work, I can't stress enough that
 a good understanding of how do blocks translate to lambdas and binds is *necessary*. 
@@ -125,15 +127,7 @@ For each line, we imagine "pattern-matching" that line to one the following two 
 | **CASE 2.** `<expression>`  *(on last line)*                    | `<expression>`                                      |
 
 
-**Algorithm (convert do-block to lambda-binds)**
-```
-def to_lambda_binds(do_block):
-    for each line of do_block:
-        case line of:
-            indenfier <- rhs
-            
-        
-```
+Let's see how it works.
 
 ----
 **Example 1**    
@@ -163,6 +157,18 @@ is second line translates to itself! The result is [B].
 ```
 
 ---
+
+We can summarise this translation algorithm with the following pseudo-code.
+
+```python
+# -- Translates a do-block to a nested lambda-bind expression (pseudo-code)
+def translate(line:lines):
+   match line:
+       case (indenfier <- rhs) => return (λidentifier -> translate(lines))
+       case (expression) => return expression
+```
+
+----
 
 With the introduction of the do block, 
 one question that might to crop up is: *have we been writing* **imperative programs** *all along*? 
