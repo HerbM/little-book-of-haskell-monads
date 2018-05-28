@@ -25,3 +25,17 @@ instead have monadic functions and the Kleisli Arrow.
 
 - A monadic function is the "object" in the Kleisli Category
 - The Kleisli composition operator `<=<` is the "arrow" that connects together monadic functions (the "objects") in the Kleisli Category
+
+
+The **Kleisli composition** has the following definition: 
+
+```
+(m >=> n) x = 
+do
+  y <- m x
+  n y
+```
+
+here **m** and **n** are two monadic functions.
+The net result of `(m >=> n)` is a brand new 
+single monadic function that performs the effects of both m and n with m's effect sequenced before n.
