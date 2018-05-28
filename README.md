@@ -16,7 +16,7 @@
 - [**2A**. Using `=<<` for Function Application](https://github.com/jameslawson/little-book-of-haskell-monads/blob/master/haskell2a.md)
 - [**2B**. `=<<` as a Sequencing Operator](https://github.com/jameslawson/little-book-of-haskell-monads/blob/master/haskell2b.md)
 - [**2C**. The Intuition behind `a -> M b`](https://github.com/jameslawson/little-book-of-haskell-monads/blob/master/haskell2c.md)
-- [**2D** `do` blocks, Recursion and Induction](https://github.com/jameslawson/little-book-of-haskell-monads/blob/master/haskell2d.md)
+- [**2D** Composing `do` Blocks](https://github.com/jameslawson/little-book-of-haskell-monads/blob/master/haskell2d.md)
 - [**2E**. Nested `do` Blocks](https://github.com/jameslawson/little-book-of-haskell-monads/blob/master/haskell2e.md)
 
     
