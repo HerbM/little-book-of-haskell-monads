@@ -90,29 +90,19 @@ do
   e
 ```
 
-Then we can see how the types flow:
-```
-IND. CASE (bind):    (t4 -> M tE) -> M t4 -> M tE
-                                      └───────┐
-IND. CASE (bind):    (t3 -> M t4) -> M t3 -> M t4
-                                      └───────┐
-IND. CASE (bind):    (t2 -> M t3) -> M t2 -> M t3
-                                      └───────┐
-IND. CASE (bind):    (t1 -> M t2) -> M t1 -> M t2
-                                      └───────┐
-BASE CASE (unit):                            M t1
-```
-
-
-And by the identity law of monads, it's permissible to have
-m1, m2, ... m4 and e themselves be do-blocks.
+Then we can put emphasis on the types of the corresponding lambda-bind.
+There is a mapping that takes each `mi` above in the do-block and
+maps it to a `\xi -> mi` in the corresponding lambda-bind expression.
+The lambda-bind has type `ti -> M ti+1`.
+We're focusing on types so for each `mi`, 
+we'll put this type in our picture:
 
 ```
 do
   x4 <- do
       x3 <- do
           x2 <- do
-              x1 <- return u
+              x1 <- do
               __________________
               |                |
               |   t1 -> M t2   |
@@ -135,15 +125,15 @@ do
   _________________
 
 
-IND. CASE (bind):    (t1 -> M t0) -> M t1 -> M t0
+IND. CASE (bind):    (t4 -> M tE) -> M t4 -> M tE
                                       └───────┐
-IND. CASE (bind):    (t2 -> M t1) -> M t2 -> M t1
+IND. CASE (bind):    (t3 -> M t4) -> M t3 -> M t4
                                       └───────┐
-IND. CASE (bind):    (t3 -> M t2) -> M t3 -> M t2
+IND. CASE (bind):    (t2 -> M t3) -> M t2 -> M t3
                                       └───────┐
-IND. CASE (bind):    (t4 -> M t3) -> M t4 -> M t3
+IND. CASE (bind):    (t1 -> M t2) -> M t1 -> M t2
                                       └───────┐
-BASE CASE (unit):                     t4 -> M t4
+BASE CASE (unit):                            M t1
 ```
 
 
