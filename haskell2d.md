@@ -123,8 +123,12 @@ do
   |   t -> M tE   |
   |               |
   _________________
+```
 
 
+Then we can see how the types flows:
+
+```
 IND. CASE (bind):    (t4 -> M tE) -> M t4 -> M tE
                                       └───────┐
 IND. CASE (bind):    (t3 -> M t4) -> M t3 -> M t4
