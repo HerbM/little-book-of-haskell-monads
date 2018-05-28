@@ -16,7 +16,9 @@ any type can replace `b` here. And we really mean *any* type! ... String, Intege
 But be careful! This polymorphism is "scoped" for this particular function application.
 A nested lambda bind may have many binds, 
 but the `a` of one bind does not necessarily have to be the same
-as the `a` of another bind (same for the `b`s).
+as the `a` of another bind (same for the `b`s). In other words, we have an instance
+of **polymorphism occuring at each line of the block**, not polymorphism occuring once
+for the entire block.
 
 When we say `a -> M b`, it does not mean that for the do-block *all* the corresponding
 binds have the same type input `a` and the same output type `M b`. What it means is that
@@ -118,24 +120,35 @@ Overall we have:
 
 
 
-### Looking Closely at `M b` via do-blocks
+### `M b` Propogates through all the lines
 
 ```
 do 
-  x1 <- m1  ← x1 has type a1, m1 has type Ma1
-  ...         eventually the last line has type Mb 
+  x1 <- m1  ←      x1 :: a1  m1 :: M a1
+  ...              last-line :: M b
   
-do 
-  x1 <- m1    
-  x2 <- m2  ← x2 has type a2, m2 has type Ma2
-  ...         eventually the last line has type Mb 
+             do 
+line 1:        x1 <- m1    
+line 2:        x2 <- m2  ←      x2 :: a2, m2 :: M a2
+               ...             
+last line:     <last-line>      e :: M b
   
+  
+             do 
+line 1:        x1 <- m1    
+line 2:        x2 <- m2
+line 3:        x3 <- m3  ←      x3 :: a3,  m3 :: M a3
+               ...             
+last line:     <last-line>      e :: M b
+
+
+
 do 
   x1 <- m1  
   x2 <- m2
-  x3 <- m3  ← x3 has type a3, m3 has type Ma3
-  ...         eventually the last line has type Mb
-
+  x3 <- m3  ←      x3 :: a3, m3 :: M a3
+  ...              last-line :: M b
+  
 do 
   x1 <- m1  
   x2 <- m2
@@ -144,31 +157,42 @@ do
 ``` 
 
 
-
-- a1 is the type of x1 in the statement `x1 <- m1` in the do block
-- m a1 is the type of m1 in the statement `x1 <- m1` in the do block
-- given monad m doesn't know what a1, a2, ..., an are going to be, it's the function
-  that performs the side-effect that determines a1.
+- In general, for **line i**, we have the statement `xi <- mi`.
+    - we are using `<-` to unwrap a constructor so: `mi` has type `m ai` and `xi` has type `ai`  
+    - line i accepts that the last line of the *entire* do-block will be of type `M b`
+      despite it not even knowing what the other lines of the do-block will be.
+      (the last lines of the do-block shown with 
 - Mb is the result of the final line of the do-block, e
 - The type Mb propogates throughout. The overall type of do-bkock Mb.
-  Unlike the `a`s which change at each line, the `b` stays the same. That is,
+  
   we don't have b1, b2, ..., bn – it's the same b throughout.
   
   
 
 
-> **Key Point** The `M b` propogates throughout the do-block. 
 
-So although we said the polymorphism of the `b` type occurs on a line-by-line basis,
+
+
+
+
+
+> **Key Point** The `M b` propogates throughout the do-block. 
+The types of `xi` and `mi` are allowed to change at each line `xi <- mi`, but
+what stays the same throughout is `M b`. Every line of a do-block agrees that the last
+statement of the do-block must have type `M b`.
+
+The polymorphism of occurs on a line-by-line basis.
+
+
+
 by virtue of the nesting of the funcions, `b` types of all the binds *are the same*.
 What this means is that a given do block has one and only one return type `M b`.
 There's no need to worry about `b1`, `b2`, `b3`, ..., `bn`, it's just the same 
 `b` throughout!
 
-And perhaps another fascinating result is that the `M` stays the same!
-What this means is that a given do-block has one, and only one
-particular monad that it works with.
-
+And another important result is that the `M` **stays the same**!
+What this means is that a given do-block **has one, and only one
+particular monad** that it works with.
 
 
 
