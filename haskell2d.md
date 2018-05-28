@@ -126,7 +126,7 @@ do
 ```
 
 
-Then we can see how the types flows:
+This provides an alternative view to seeing how the types flows:
 
 ```
 IND. CASE (bind):    (t4 -> M tE) -> M t4 -> M tE
@@ -139,6 +139,12 @@ IND. CASE (bind):    (t1 -> M t2) -> M t1 -> M t2
                                       └───────┐
 BASE CASE (unit):                            M t1
 ```
+
+Each bind corresponds to a different line in the original do-block (before we applied the associativity law).
+Again notice how we have polymorphism at each line.
+Each time we bind, we are potentially using different type `ti` to the previous line's type
+`tj` ... we are *not* requiring `ti = tj`. 
+
 
 
 
