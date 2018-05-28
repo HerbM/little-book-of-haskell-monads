@@ -1,6 +1,9 @@
 ## 2D. Composing do Blocks
 
 
+### The Associativity Law
+
+
 ### do blocks, Recursion and Induction
 
 
