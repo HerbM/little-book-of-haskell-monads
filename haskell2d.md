@@ -1,5 +1,7 @@
-## 2D. do blocks, Recursion and Induction
+## 2D. Composing do Blocks
 
+
+### do blocks, Recursion and Induction
 
 ### Explaining `a -> M b` with Recursion
 
