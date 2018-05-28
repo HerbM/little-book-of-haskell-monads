@@ -65,31 +65,72 @@ do
 
 ### do blocks, Recursion and Induction
 
+```
+do
+  x1 <- m1
+  x2 <- m2
+  x3 <- m3
+  x4 <- m4
+  e
+```
+
+
+Apply the associativity law multiple times:
 
 ```
 do
-  x1 <- do
+  x4 <- do
+    x3 <- do
       x2 <- do
-          x3 <- do
-              x4 <- return u
+        x1 <- do
+          m1
+        m2
+      m3
+    m4
+  e
+```
+
+Then we can see how the types flow:
+```
+IND. CASE (bind):    (t4 -> M tE) -> M t4 -> M tE
+                                      └───────┐
+IND. CASE (bind):    (t3 -> M t4) -> M t3 -> M t4
+                                      └───────┐
+IND. CASE (bind):    (t2 -> M t3) -> M t2 -> M t3
+                                      └───────┐
+IND. CASE (bind):    (t1 -> M t2) -> M t1 -> M t2
+                                      └───────┐
+BASE CASE (unit):                            M t1
+```
+
+
+And by the identity law of monads, it's permissible to have
+m1, m2, ... m4 and e themselves be do-blocks.
+
+```
+do
+  x4 <- do
+      x3 <- do
+          x2 <- do
+              x1 <- return u
               __________________
               |                |
-              |   t4 -> M t3   |
+              |   t1 -> M t2   |
               |                |
               __________________
           __________________
           |                |
-          |   t3 -> M t2   |
+          |   t2 -> M t3   |
           |                |
           __________________
       __________________
       |                |
-      |   t2 -> M t1   |
+      |   t3 -> M t4   |
       |                |
       _________________
   _________________
   |               |
-  |   t1 -> M t0  |
+  |   t -> M tE   |
   |               |
   _________________
 
