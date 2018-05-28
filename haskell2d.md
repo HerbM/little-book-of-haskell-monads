@@ -4,7 +4,6 @@
 ### do blocks, Recursion and Induction
 
 
-
 ```
 do
   x1 <- do
@@ -40,9 +39,8 @@ IND. CASE (bind):    (t2 -> M t1) -> M t2 -> M t1
 IND. CASE (bind):    (t3 -> M t2) -> M t3 -> M t2
                                       └───────┐
 IND. CASE (bind):    (t4 -> M t3) -> M t4 -> M t3
-                      ┌───────────────┘
-BASE CASE (unit):    t4 -> M t4
-
+                                      └───────┐
+BASE CASE (unit):                     t4 -> M t4
 ```
 
 
