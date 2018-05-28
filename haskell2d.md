@@ -24,6 +24,8 @@ bind: (t1 -> M t0) -> M t1 -> M t0
 ```
 
 
+
+
 ### The Associativity Law
 
 ```
